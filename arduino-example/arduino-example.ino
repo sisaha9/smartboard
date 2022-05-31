@@ -1,5 +1,5 @@
 int current_idx = 0;
-String sentence = "Do you want an apple";
+String sentence = "Bring me an apple";
 String result = "";
 
 void setup() {

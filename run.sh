@@ -1,0 +1,1 @@
+TRANSFORMERS_OFFLINE=1 python3 word_generator.py
