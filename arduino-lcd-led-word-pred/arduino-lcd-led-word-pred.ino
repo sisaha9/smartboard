@@ -6,6 +6,7 @@
 #define NUM_LEDS 10 // Number of LEDs
 #define LED_TYPE WS2811 // Type of LED
 #define COLOR_ORDER BRG // Color ordering for LED
+CRGB leds[NUM_LEDS];
 
 LiquidCrystal_I2C lcd(0x27,20,4);  
 
@@ -46,9 +47,9 @@ void print_led(String letter)
 {
   reset_leds();
   if(letter == "a" || letter == "A"){
-        leds[0] = CHSV(0, 0, 255);
-        FastLED.show();
-        delay(1000);
+    leds[0] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
   }
   else if(letter == "b" || letter == "B"){
     leds[1] = CHSV(0, 0, 255);
@@ -85,16 +86,12 @@ void print_led(String letter)
     FastLED.show();
     delay(1000);
   }
-  else {
-    reset_leds();
-  }
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   if (Serial.available() > 0) // Has Jetson said anything?
   {
-    reset_lcd();
     result = Serial.readStringUntil('\n'); // Read output from Jetson except for newline
     if (result != "ready") // If this is not the starting handshake
     {
@@ -124,7 +121,7 @@ void loop() {
     if (current_idx < sentence.length()) // As long as we have not reached end of sentence
     {
       building_sentence = building_sentence + sentence[current_idx]; // Add new character to current sentence
-      print_led(sentence[current_idx]); // Glow LED based off letter
+      print_led(String(sentence[current_idx])); // Glow LED based off letter
       Serial.println(sentence[current_idx]); // Send the current character in the sentence to Jetson
       current_idx++; // Increment index to send new character next time
     }
