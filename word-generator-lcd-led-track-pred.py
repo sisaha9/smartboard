@@ -14,6 +14,9 @@ history = "" # Variable that stores all characters received so far
 recent_word = "" # Variable that stores only the most recent word. Blank if recent word is complete
 sentence = "" # Variable that is the same as history except it does not have the recent word
 
+hardcoded_sentence = "bring me an apple please"
+i = 0
+
 tracker = LaserTracker(
     cam_width=640,
     cam_height=480,
@@ -31,6 +34,10 @@ t.daemon = True
 t.start()
 while True: # Run forever
     t = tracker.latest_letter
+    if i == len(hardcoded_sentence):
+        continue
+    t = hardcoded_sentence[i]
+    i += 1
     if t:
         s = t.lower()
         history += s # Add it to history
