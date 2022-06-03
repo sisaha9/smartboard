@@ -6,6 +6,7 @@
 #define NUM_LEDS 10 // Number of LEDs
 #define LED_TYPE WS2811 // Type of LED
 #define COLOR_ORDER BRG // Color ordering for LED
+CRGB leds[NUM_LEDS];
 
 LiquidCrystal_I2C lcd(0x27,20,4);  
 
@@ -45,9 +46,9 @@ void print_led(String letter)
 {
   reset_leds();
   if(letter == "a"){
-        leds[0] = CHSV(0, 0, 255);
-        FastLED.show();
-        delay(1000);
+    leds[0] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
   }
   else if(letter == "b"){
     leds[1] = CHSV(0, 0, 255);
