@@ -11,7 +11,7 @@ CRGB leds[NUM_LEDS];
 LiquidCrystal_I2C lcd(0x27,20,4);  
 
 String result = ""; // Variable to store response from Jetson and later predictions
-String letter = "" // Variable to store letter coming from Jetson
+String letter = ""; // Variable to store letter coming from Jetson
 int MAX_WIDTH = 20; // Maximum width of screen
 String building_sentence = ""; // Sentence we will progressively receive from Jetson
 

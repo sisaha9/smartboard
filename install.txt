@@ -1,5 +1,9 @@
 sudo apt install libopenblas-dev
+sudo apt install ffmpeg
+sudo apt install mpg321
 pip3 install --no-cache https://developer.download.nvidia.cn/compute/redist/jp/v50/pytorch/torch-1.12.0a0+84d1cb9.nv22.4-cp38-cp38-linux_aarch64.whl
 pip3 install git+https://github.com/sisaha9/transformers.git@add_prefix
 pip3 install git+https://github.com/sisaha9/happy-transformer.git@add_prefix
 pip3 install pyserial
+pip3 install gTTS
+pip3 install opencv-python

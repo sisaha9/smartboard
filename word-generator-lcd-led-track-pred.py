@@ -1,8 +1,8 @@
 from serial import Serial
 from laser_tracker.laser_tracker.laser_tracker import LaserTracker
 from happytransformer import HappyWordPrediction
-from espnet2.bin.tts_inference import Text2Speech
-from IPython.display import display, Audio
+from gtts import gTTS
+import os
 
 import time
 import threading
@@ -11,7 +11,6 @@ warnings.filterwarnings("ignore")
 
 arduino = Serial(port="/dev/ttyACM0", baudrate=9600, timeout=1) # Communication with Arduino
 happy_wp = HappyWordPrediction() # NN for Word Prediction
-model = Text2Speech.from_pretrained("espnet/kan-bayashi_ljspeech_vits")
 
 time.sleep(3) # Sleeping to give Arduino time to get ready
 print("Ready to track") # Ready to start receiving input
@@ -46,8 +45,9 @@ while True: # Run forever
     if t:
         s = t.lower()
         history += s # Add it to history
-        speech, *_ = model(history)
-        display(Audio(speech.view(-1).cpu().numpy(), rate=model.fs))
+        myobj = gTTS(text=history, lang='en', slow=False)
+        myobj.save("text.mp3")
+        os.system("mpg321 text.mp3")
         if s != " ": # If it's not a space
             recent_word += s # Update the recent word
         else:
@@ -61,4 +61,5 @@ while True: # Run forever
         predictions = " ".join([pred.token for pred in preds]) # Join the top 3 predictions
         predictions = s + predictions
         print(f"One cycle done with {s} as input") # Debugging
+        print(predictions[1:])
         arduino.write(predictions.encode()) # Send predictions to Arduino
