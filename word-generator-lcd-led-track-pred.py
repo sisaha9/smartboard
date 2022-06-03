@@ -37,7 +37,7 @@ t = threading.Thread(target=tracker.run, name = "Laser Tracker")
 t.daemon = True
 t.start()
 while True: # Run forever
-    t = tracker.latest_letter
+    t = tracker.get_latest_letter()
     if i == len(hardcoded_sentence):
         continue
     t = hardcoded_sentence[i]
