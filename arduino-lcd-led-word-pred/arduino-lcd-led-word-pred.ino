@@ -3,7 +3,7 @@
 #include <FastLED.h>
 
 #define LED_PIN 3 // LED Pin Number
-#define NUM_LEDS 10 // Number of LEDs
+#define NUM_LEDS 26 // Number of LEDs
 #define LED_TYPE WS2811 // Type of LED
 #define COLOR_ORDER BRG // Color ordering for LED
 CRGB leds[NUM_LEDS];
@@ -11,7 +11,7 @@ CRGB leds[NUM_LEDS];
 LiquidCrystal_I2C lcd(0x27,20,4);  
 
 int current_idx = 0; // Current index to send to jetson
-String sentence = "Bring me an apple"; // Sentence we will progressively send to Jetson
+String sentence = "bring me an apple"; // Sentence we will progressively send to Jetson
 String result = ""; // Variable to store response from Jetson
 int MAX_WIDTH = 20; // Maximum width of screen
 String building_sentence = "";
@@ -86,6 +86,96 @@ void print_led(String letter)
     FastLED.show();
     delay(1000);
   }
+  else if(letter == "i" || letter == "I"){
+    leds[8] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "j" || letter == "J"){
+    leds[17] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "k" || letter == "K"){
+    leds[16] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "l" || letter == "L"){
+    leds[15] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "m" || letter == "M"){
+    leds[14] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "n" || letter == "N"){
+    leds[13] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "o" || letter == "O"){
+    leds[12] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "p" || letter == "P"){
+    leds[11] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "q" || letter == "q"){
+    leds[10] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "r" || letter == "R"){
+    leds[9] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "s" || letter == "S"){
+    leds[18] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "t" || letter == "T"){
+    leds[19] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "u" || letter == "U"){
+    leds[20] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "v" || letter == "V"){
+    leds[21] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "w" || letter == "W"){
+    leds[22] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "x" || letter == "X"){
+    leds[23] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "y" || letter == "y"){
+    leds[24] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "z" || letter == "Z"){
+    leds[25] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
 }
 
 void loop() {
@@ -121,7 +211,7 @@ void loop() {
     if (current_idx < sentence.length()) // As long as we have not reached end of sentence
     {
       building_sentence = building_sentence + sentence[current_idx]; // Add new character to current sentence
-      print_led(String(sentence[current_idx])); // Glow LED based off letter
+//      print_led(String(s/entence[current_idx])); // Glow LED based off letter
       Serial.println(sentence[current_idx]); // Send the current character in the sentence to Jetson
       current_idx++; // Increment index to send new character next time
     }

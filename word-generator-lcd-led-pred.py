@@ -2,6 +2,10 @@ from serial import Serial
 import time
 from happytransformer import HappyWordPrediction
 import warnings
+
+from gtts import gTTS
+import os
+
 warnings.filterwarnings("ignore")
 
 arduino = Serial(port="/dev/ttyACM0", baudrate=9600, timeout=1) # Communication with Arduino
@@ -31,4 +35,7 @@ while True: # Run forever
             preds = happy_wp.predict_mask(sentence + "[MASK]", top_k = 3, prefix = recent_word) # Complete existing word
         predictions = " ".join([pred.token for pred in preds]) # Join the top 3 predictions
         print(f"One cycle done with {s} as input") # Debugging
+        myobj = gTTS(text=history, lang='en', slow=False)
+        myobj.save("text.mp3")
+        os.system("mpg321 -q text.mp3")
         arduino.write(predictions.encode()) # Send predictions to Arduino

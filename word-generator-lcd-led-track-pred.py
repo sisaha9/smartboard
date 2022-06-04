@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 from serial import Serial
 from laser_tracker.laser_tracker.laser_tracker import LaserTracker
 from happytransformer import HappyWordPrediction
@@ -18,7 +19,7 @@ history = "" # Variable that stores all characters received so far
 recent_word = "" # Variable that stores only the most recent word. Blank if recent word is complete
 sentence = "" # Variable that is the same as history except it does not have the recent word
 
-hardcoded_sentence = "bring me an apple please"
+hardcoded_sentence = "hello world"
 i = 0
 
 tracker = LaserTracker(
@@ -26,7 +27,7 @@ tracker = LaserTracker(
     cam_height=480,
     hue_min=20,
     hue_max=160,
-    sat_min=100,
+    sat_min=70,
     sat_max=255,
     val_min=200,
     val_max=255,
@@ -38,28 +39,33 @@ t.daemon = True
 t.start()
 while True: # Run forever
     t = tracker.get_latest_letter()
+    # print(t)
     if i == len(hardcoded_sentence):
         continue
     t = hardcoded_sentence[i]
-    i += 1
     if t:
+        i += 1
         s = t.lower()
         history += s # Add it to history
-        myobj = gTTS(text=history, lang='en', slow=False)
-        myobj.save("text.mp3")
-        os.system("mpg321 text.mp3")
         if s != " ": # If it's not a space
             recent_word += s # Update the recent word
         else:
             recent_word = "" # Recent word is complete. Reset to blank
             sentence = history # Update sentence as the most recent word is complete
         print(history) # Printing for debugging purposes
-        if recent_word == "": # If recent word is complete
-            preds = happy_wp.predict_mask(sentence + "[MASK]", top_k = 3) # Predict new word
-        else:
-            preds = happy_wp.predict_mask(sentence + "[MASK]", top_k = 3, prefix = recent_word) # Complete existing word
+        try:
+            if recent_word == "": # If recent word is complete
+                preds = happy_wp.predict_mask(sentence + "[MASK]", top_k = 3) # Predict new word
+            else:
+                preds = happy_wp.predict_mask(sentence + "[MASK]", top_k = 3, prefix = recent_word) # Complete existing word
+        except ValueError:
+            preds = ""
         predictions = " ".join([pred.token for pred in preds]) # Join the top 3 predictions
-        predictions = s + predictions
+        predictions = s + predictions + "\n"
         print(f"One cycle done with {s} as input") # Debugging
         print(predictions[1:])
         arduino.write(predictions.encode()) # Send predictions to Arduino
+        myobj = gTTS(text=history, lang='en', slow=False)
+        myobj.save("text.mp3")
+        os.system("mpg321 -q text.mp3")
+        time.sleep(3)

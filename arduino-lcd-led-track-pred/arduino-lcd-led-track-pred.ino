@@ -3,7 +3,7 @@
 #include <FastLED.h>
 
 #define LED_PIN 3 // LED Pin Number
-#define NUM_LEDS 10 // Number of LEDs
+#define NUM_LEDS 39 // Number of LEDs
 #define LED_TYPE WS2811 // Type of LED
 #define COLOR_ORDER BRG // Color ordering for LED
 CRGB leds[NUM_LEDS];
@@ -45,49 +45,146 @@ void reset_leds() {
 void print_led(String letter)
 {
   reset_leds();
-  if(letter == "a"){
+  if(letter == "a" || letter == "A"){
     leds[0] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "b"){
+  else if(letter == "b" || letter == "B"){
     leds[1] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "c"){
+  else if(letter == "c" || letter == "C"){
     leds[2] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "d"){
+  else if(letter == "d" || letter == "D"){
     leds[3] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "e"){
+  else if(letter == "e" || letter == "E"){
     leds[4] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "f"){
+  else if(letter == "f" || letter == "F"){
     leds[5] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "g"){
+  else if(letter == "g" || letter == "G"){
     leds[6] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
-  else if(letter == "h"){
+  else if(letter == "h" || letter == "H"){
     leds[7] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "i" || letter == "I"){
+    leds[8] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "j" || letter == "J"){
+    leds[17] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "k" || letter == "K"){
+    leds[16] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "l" || letter == "L"){
+    leds[15] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "m" || letter == "M"){
+    leds[14] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "n" || letter == "N"){
+    leds[13] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "o" || letter == "O"){
+    leds[12] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "p" || letter == "P"){
+    leds[11] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "q" || letter == "q"){
+    leds[10] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "r" || letter == "R"){
+    leds[9] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "s" || letter == "S"){
+    leds[18] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "t" || letter == "T"){
+    leds[19] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "u" || letter == "U"){
+    leds[20] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "v" || letter == "V"){
+    leds[21] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "w" || letter == "W"){
+    leds[22] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "x" || letter == "X"){
+    leds[23] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "y" || letter == "y"){
+    leds[24] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if(letter == "z" || letter == "Z"){
+    leds[25] = CHSV(0, 0, 255);
+    FastLED.show();
+    delay(1000);
+  }
+  else if (letter == " "){
+    leds[38] = CHSV(0, 0, 255);
     FastLED.show();
     delay(1000);
   }
   else {
     reset_leds();
   }
+  delay(500);
+  reset_leds();
 }
 
 void loop() {
@@ -124,5 +221,5 @@ void loop() {
       lcd.print(building_sentence); // print the whole sentence
     }
   }
-  delay(2000);
+  delay(1000);
 }

@@ -6,9 +6,8 @@ warnings.filterwarnings("ignore")
 
 arduino = Serial(port="/dev/ttyACM0", baudrate=9600, timeout=1) # Communication with Arduino
 happy_wp = HappyWordPrediction() # NN for Word Prediction
-time.sleep(3) # Sleeping to give Arduino time to get ready
 arduino.write('ready'.encode()) # Send handshake
-time.sleep(3) # Wait for Arduino to process this
+time.sleep(1) # Wait for Arduino to process this
 print("Ready to receive input") # Ready to start receiving input
 history = "" # Variable that stores all characters received so far
 recent_word = "" # Variable that stores only the most recent word. Blank if recent word is complete
