@@ -45,12 +45,19 @@ Note the source installations of the `transformers` and `happy-transformer` libr
 git clone https://github.com/sisaha9/smartboard.git
 ```
 Once cloned, switch directories to inside this repository
+
 2. Follow the [installation instructions](#installation-instructions)
+
 3. Flash the Arduino code in `smartboard_arduino`
+
 4. Run `python3 laser_tracker/laser_tracker/laser_tracker.py`
-5. Position your USB camera so that the letter board is centered in view 
+
+5. Position your USB camera so that the letter board is centered in view
+
 ![Smartboard Position](media/letterboard_position.png)
+
 6. Run `./run.sh` (Note that you still need to be connected to internet for the gTTS library to operate)
+
 7. It takes around 30 seconds to initialize but once it does the letter tracking works and you will be able to use the Smartboard as intended
 
 ## References
