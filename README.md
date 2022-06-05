@@ -3,6 +3,8 @@
 
 Code for using a Smart Letterboard for communication
 
+[![Smartboard Demo](https://img.youtube.com/vi/47iijlBFpDY/0.jpg)](https://youtu.be/47iijlBFpDY "Smartboard Demo")
+
 **Table of contents**
 
 - [Smartboard](#smartboard)
