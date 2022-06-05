@@ -8,7 +8,7 @@
 #define COLOR_ORDER BRG // Color ordering for LED
 CRGB leds[NUM_LEDS];
 
-LiquidCrystal_I2C lcd(0x27,20,4);  
+LiquidCrystal_I2C lcd(0x27,20,4);  // Object defining LCD address, width and height
 
 String result = ""; // Variable to store response from Jetson and later predictions
 String letter = ""; // Variable to store letter coming from Jetson
@@ -25,26 +25,27 @@ void setup() {
 
 void reset_lcd()
 {
-  lcd.setCursor(0, 0);
-  lcd.print("                    ");
-  lcd.setCursor(0, 1);
-  lcd.print("                    ");
-  lcd.setCursor(0, 2);
-  lcd.print("                    ");
-  lcd.setCursor(0, 3);
-  lcd.print("                    ");
+  lcd.setCursor(0, 0); // Go to first row
+  lcd.print("                    "); // Add 20 spaces
+  lcd.setCursor(0, 1); // Go to second row
+  lcd.print("                    "); // Add 20 spaces
+  lcd.setCursor(0, 2); // Go to 3rd row
+  lcd.print("                    "); // Add 20 spaces
+  lcd.setCursor(0, 3); // Go to 4th row
+  lcd.print("                    "); // Add 20 spaces
 }
 
 void reset_leds() {
-  for (int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = CHSV(0, 0, 0);
+  for (int i = 0; i < NUM_LEDS; i++) { // Go through every LED
+    leds[i] = CHSV(0, 0, 0); // Set it to no glow
   }
-  FastLED.show();
+  FastLED.show(); // Show it's effect in real world
 }
 
 void print_led(String letter)
 {
-  reset_leds();
+  reset_leds(); // Reset all the LEDS
+  // Depending on which letter we get, set it's LED index to glow white
   if(letter == "a" || letter == "A"){
     leds[0] = CHSV(0, 0, 255);
     FastLED.show();
@@ -180,11 +181,12 @@ void print_led(String letter)
     FastLED.show();
     delay(1000);
   }
+  // If the letter doesn't match an LED reset all of them
   else {
     reset_leds();
   }
-  delay(500);
-  reset_leds();
+  delay(500); // Let the LED glow for a bit more
+  reset_leds(); // Reset the LEDs again
 }
 
 void loop() {
@@ -195,7 +197,6 @@ void loop() {
     letter = result.substring(0, 1); // Get just the character from the serial
     building_sentence = building_sentence + letter; // Add new character to current sentence
     print_led(letter); // Glow LED based off letter
-    Serial.println(letter); // Send the current character in the sentence to Jetson
     result = result.substring(1, result.length()); // Get the predictions
     reset_lcd(); // Reset the LCD
     lcd.setCursor ( 0, 0 );            // go to the top left corner
@@ -221,5 +222,5 @@ void loop() {
       lcd.print(building_sentence); // print the whole sentence
     }
   }
-  delay(1000);
+  delay(1000); // Delay by 1 second to get Arduino ready
 }
