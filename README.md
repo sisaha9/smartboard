@@ -56,7 +56,7 @@ Once cloned, switch directories to inside this repository
 
 ![Smartboard Position](media/letterboard_position.png)
 
-6. Run `./run.sh` (Note that you still need to be connected to internet for the gTTS library to operate)
+6. Stop running the laser tracker. Now run `./run.sh` (Note that you still need to be connected to internet for the gTTS library to operate)
 
 7. It takes around 10-30 seconds to initialize (depending on hardware) but once it does the letter tracking works and you will be able to use the Smartboard as intended
 
