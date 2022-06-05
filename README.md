@@ -62,6 +62,6 @@ Once cloned, switch directories to inside this repository
 
 ## References
 
-- This work heavily relies on @bradmontgomery 's laser tracker code: https://github.com/sisaha9/python-laser-tracker
-- This work also relies on the Happy Transformer library for word prediction: https://happytransformer.com
-- This work also relies on the gTTS library for text to speech: https://gtts.readthedocs.io/en/latest
+- This work relies on @bradmontgomery 's laser tracker code: https://github.com/sisaha9/python-laser-tracker
+- This work relies on the Happy Transformer library for word prediction: https://happytransformer.com
+- This work relies on the gTTS library for text to speech: https://gtts.readthedocs.io/en/latest
