@@ -58,7 +58,7 @@ Once cloned, switch directories to inside this repository
 
 6. Run `./run.sh` (Note that you still need to be connected to internet for the gTTS library to operate)
 
-7. It takes around 30 seconds to initialize but once it does the letter tracking works and you will be able to use the Smartboard as intended
+7. It takes around 10-30 seconds to initialize (depending on hardware) but once it does the letter tracking works and you will be able to use the Smartboard as intended
 
 ## References
 
