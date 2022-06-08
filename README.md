@@ -44,7 +44,7 @@ Note the source installations of the `transformers` and `happy-transformer` libr
 
 1. Clone this repository
 ```
-git clone https://github.com/sisaha9/smartboard.git
+git clone --recurse-submodules https://github.com/sisaha9/smartboard.git
 ```
 Once cloned, switch directories to inside this repository
 
